@@ -14,13 +14,11 @@
             --text-main: #1d1d1f;
             --text-secondary: #6e6e73;
             --glass-border: rgba(255, 255, 255, 0.4);
-            
-            /* Couleurs par Catégorie */
-            --color-demo: #0071e3;    /* Bleu */
-            --color-climat: #248a3d;  /* Vert */
-            --color-eco: #85660e;     /* Or */
-            --color-tech: #8920ad;    /* Violet */
-            --color-res: #d35400;     /* Orange */
+            --color-demo: #0071e3;
+            --color-climat: #248a3d;
+            --color-eco: #85660e;
+            --color-tech: #8920ad;
+            --color-res: #d35400;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,24 +45,10 @@
             -webkit-backdrop-filter: blur(20px);
         }
 
-        .ticker {
-            display: flex;
-            white-space: nowrap;
-            animation: ticker-move 100s linear infinite;
-        }
+        .ticker { display: flex; white-space: nowrap; animation: ticker-move 100s linear infinite; }
+        .ticker-item { padding: 0 40px; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
 
-        .ticker-item {
-            padding: 0 40px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-
-        @keyframes ticker-move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes ticker-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* --- Layout --- */
         .container { max-width: 1400px; margin: 0 auto; padding: 20px 24px; }
@@ -80,6 +64,10 @@
         .live-indicator { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: #34c759; text-transform: uppercase; }
         .dot { width: 8px; height: 8px; background: #34c759; border-radius: 50%; animation: pulse 2s infinite; }
 
+        /* --- Adsense Containers --- */
+        .ad-top-container { width: 100%; text-align: center; margin-bottom: 25px; min-height: 90px; }
+        .card.ad-unit { padding: 10px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.03); }
+
         /* --- Navigation --- */
         .category-nav {
             display: flex;
@@ -92,78 +80,34 @@
         .category-nav::-webkit-scrollbar { display: none; }
 
         .cat-btn {
-            background: #fff;
-            border: 1px solid var(--glass-border);
-            padding: 10px 22px;
-            border-radius: 99px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
+            background: #fff; border: 1px solid var(--glass-border); padding: 10px 22px;
+            border-radius: 99px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
         }
-
         .cat-btn.active { background: var(--text-main); color: #fff; }
 
         /* --- Bento Grid --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-        }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
 
         .card {
-            background: var(--card-bg);
-            backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 190px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            background: var(--card-bg); backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 28px; padding: 24px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 190px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
 
-        /* Styles Spécifiques aux Pubs en grille */
-        .card.ad-unit {
-            padding: 10px;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0,0,0,0.02);
-        }
-
-        /* Couleurs des titres */
         .card[data-category="demographie"] .label { color: var(--color-demo); }
         .card[data-category="climat"] .label { color: var(--color-climat); }
         .card[data-category="economie"] .label { color: var(--color-eco); }
         .card[data-category="tech"] .label { color: var(--color-tech); }
         .card[data-category="ressources"] .label { color: var(--color-res); }
 
-        .col-3 { grid-column: span 3; }
-        .col-4 { grid-column: span 4; }
-        .col-6 { grid-column: span 6; }
-        .col-8 { grid-column: span 8; }
-        .col-12 { grid-column: span 12; }
+        .col-3 { grid-column: span 3; } .col-4 { grid-column: span 4; } .col-6 { grid-column: span 6; } .col-8 { grid-column: span 8; }
 
-        .label { 
-            font-size: 11px; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
+        .label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 6px; }
         .emoji { font-size: 16px; font-style: normal; }
         .value { font-size: 34px; font-weight: 700; letter-spacing: -0.05em; color: var(--text-main); }
         .desc { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
         .source-tag { font-size: 9px; color: #b6b6bb; text-transform: uppercase; margin-top: 20px; font-weight: 600; }
-
-        /* AdSense Wrappers */
-        .ad-banner-top { width: 100%; margin: 10px 0 25px 0; text-align: center; }
 
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         @media (max-width: 900px) { .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; } }
@@ -176,11 +120,11 @@
     </div>
 
     <div class="container">
-        <div class="ad-banner-top">
+        <div class="ad-top-container">
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-5717809695352337"
-                 data-ad-slot="VOTRE_ID_BLOC_AUTO"
+                 data-ad-slot="ID_DE_VOTRE_BLOC_AUTO"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -203,17 +147,7 @@
             <button class="cat-btn" data-filter="ressources">Ressources</button>
         </div>
 
-        <div class="bento-grid" id="grid">
-            </div>
-
-        <div class="ad-banner-top" style="margin-top: 40px;">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-5717809695352337"
-                 data-ad-slot="VOTRE_ID_BLOC_FOOTER"
-                 data-ad-format="autorelaxed"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+        <div class="bento-grid" id="grid"></div>
     </div>
 
     <script>
@@ -222,33 +156,44 @@
             { id: 'pop', label: 'Population Mondiale', emoji: '🌎', category: 'demographie', base: 8310500000, speed: 2.48, type: 'val', size: 'col-8', desc: 'Individus sur Terre' },
             { id: 'births', label: 'Naissances', emoji: '👶', category: 'demographie', base: 0, speed: 4.3, type: 'day', size: 'col-4', desc: 'Ce jour' },
             
-            // Insertion Pub dans la Grille (Position 3)
+            // ADSENSE DANS LA GRILLE
             { isAd: true, size: 'col-4' },
 
             { id: 'deaths', label: 'Décès', emoji: '🕊️', category: 'demographie', base: 0, speed: 1.9, type: 'day', size: 'col-4', desc: 'Ce jour' },
             { id: 'men', label: 'Hommes', emoji: '👨', category: 'demographie', base: 4188000000, speed: 1.25, type: 'val', size: 'col-4', desc: 'Totalité' },
-            
+            { id: 'women', label: 'Femmes', emoji: '👩', category: 'demographie', base: 4122500000, speed: 1.23, type: 'val', size: 'col-4', desc: 'Totalité' },
+
             // Climat
             { id: 'co2', label: 'CO₂ émis (t)', emoji: '💨', category: 'climat', base: 0, speed: 1280, type: 'year', size: 'col-6', desc: 'Cumulé 2026' },
             { id: 'solar', label: 'Énergie Solaire', emoji: '☀️', category: 'climat', base: 0, speed: 18400, type: 'day', size: 'col-3', desc: 'MWh produits' },
             { id: 'oil', label: 'Pétrole pompé', emoji: '🛢️', category: 'climat', base: 0, speed: 1150, type: 'day', size: 'col-3', desc: 'Barils extraits' },
             
-            // Insertion Pub dans la Grille
+            // ADSENSE DANS LA GRILLE
             { isAd: true, size: 'col-6' },
 
+            { id: 'renew', label: 'Part Renouvelable', emoji: '♻️', category: 'climat', base: 31.4, speed: 0.00000001, type: 'val', size: 'col-4', desc: 'Mix électrique global', suffix: '%' },
+            { id: 'methane', label: 'Émissions Méthane', emoji: '🐮', category: 'climat', base: 0, speed: 18.5, type: 'year', size: 'col-8', desc: 'Tonnes de CH4' },
+
             // Économie
-            { id: 'pib', label: 'PIB Mondial', emoji: '💰', category: 'economie', base: 115000000000000, speed: 145000, type: 'year', size: 'col-6', desc: 'Production ($)', prefix: '$' },
+            { id: 'pib', label: 'PIB Mondial', emoji: '💰', category: 'economie', base: 115000000000000, speed: 145000, type: 'year', size: 'col-8', desc: 'Production ($)', prefix: '$' },
             { id: 'growth', label: 'Croissance Éco', emoji: '📈', category: 'economie', base: 3.1, speed: 0, type: 'val', size: 'col-4', desc: 'Taux annuel', suffix: '%' },
             { id: 'debt', label: 'Dette Mondiale', emoji: '💸', category: 'economie', base: 315000000000000, speed: 580000, type: 'year', size: 'col-6', desc: 'Totale ($)', prefix: '$' },
+            { id: 'unemp', label: 'Chômage', emoji: '💼', category: 'economie', base: 5.2, speed: 0, type: 'val', size: 'col-3', desc: 'Moyenne mondiale', suffix: '%' },
+            { id: 'infl', label: 'Inflation', emoji: '🍞', category: 'economie', base: 4.8, speed: 0, type: 'val', size: 'col-3', desc: 'Indice prix global', suffix: '%' },
 
             // Technologie
             { id: 'web_users', label: 'Internautes', emoji: '🌐', category: 'tech', base: 5750000000, speed: 12, type: 'val', size: 'col-6', desc: 'Personnes connectées' },
             { id: 'smartphones', label: 'Smartphones', emoji: '📱', category: 'tech', base: 0, speed: 46.2, type: 'year', size: 'col-6', desc: 'Produits en 2026' },
+            { id: 'rd', label: 'Dépenses R&D', emoji: '🔬', category: 'tech', base: 0, speed: 85000, type: 'year', size: 'col-4', desc: 'Investissement tech', prefix: '$' },
+            { id: 'sat', label: 'Satellites', emoji: '🛰️', category: 'tech', base: 10500, speed: 0.00005, type: 'val', size: 'col-4', desc: 'En orbite active' },
             { id: 'ai', label: 'Adoption IA', emoji: '🤖', category: 'tech', base: 42.1, speed: 0.0000002, type: 'val', size: 'col-4', desc: '% entreprises', suffix: '%' },
 
             // Ressources
             { id: 'water_res', label: 'Eau Douce', emoji: '💧', category: 'ressources', base: 35000000, speed: -0.15, type: 'val', size: 'col-4', desc: 'Réserve km³' },
-            { id: 'wood', label: 'Production Bois', emoji: '🌲', category: 'ressources', base: 0, speed: 125, type: 'day', size: 'col-8', desc: 'Mètres cubes' }
+            { id: 'iron', label: 'Minerai de Fer', emoji: '🏗️', category: 'ressources', base: 0, speed: 82, type: 'day', size: 'col-4', desc: 'Tonnes extraites' },
+            { id: 'wood', label: 'Production Bois', emoji: '🌲', category: 'ressources', base: 0, speed: 125, type: 'day', size: 'col-4', desc: 'Mètres cubes' },
+            { id: 'coal', label: 'Réserves Charbon', emoji: '🪨', category: 'ressources', base: 1074108000000, speed: -250, type: 'val', size: 'col-6', desc: 'Tonnes restantes' },
+            { id: 'water_cons', label: 'Consommation Eau', emoji: '🚰', category: 'ressources', base: 0, speed: 135000, type: 'day', size: 'col-6', desc: 'Litres (Jour)' }
         ];
 
         const grid = document.getElementById('grid');
@@ -258,35 +203,23 @@
         function init() {
             statsConfig.forEach(stat => {
                 if(stat.isAd) {
-                    // Création de l'emplacement publicitaire
                     const adCard = document.createElement('div');
                     adCard.className = `card ad-unit ${stat.size}`;
                     adCard.innerHTML = `
                         <ins class="adsbygoogle"
                              style="display:block"
                              data-ad-client="ca-pub-5717809695352337"
-                             data-ad-slot="VOTRE_ID_BLOC_GRILLE"
+                             data-ad-slot="ID_BLOC_GRID"
                              data-ad-format="fluid"
                              data-ad-layout-key="-fb+5w+4e-db+86"></ins>
                     `;
                     grid.appendChild(adCard);
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 } else {
-                    // Création de la carte de données standard
                     const card = document.createElement('div');
                     card.className = `card ${stat.size}`;
                     card.setAttribute('data-category', stat.category);
-                    card.innerHTML = `
-                        <div>
-                            <div class="label">
-                                <i class="emoji">${stat.emoji}</i>
-                                ${stat.label}
-                            </div>
-                            <div class="value" id="${stat.id}">--</div>
-                            <p class="desc">${stat.desc}</p>
-                        </div>
-                        <span class="source-tag">Flux Live DataSphere</span>
-                    `;
+                    card.innerHTML = `<div><div class="label"><i class="emoji">${stat.emoji}</i> ${stat.label}</div><div class="value" id="${stat.id}">--</div><p class="desc">${stat.desc}</p></div><span class="source-tag">Flux Live DataSphere</span>`;
                     grid.appendChild(card);
 
                     const tickItem = document.createElement('div');
@@ -306,16 +239,12 @@
 
             statsConfig.forEach(stat => {
                 if(stat.isAd) return;
-                
                 let val = (stat.type === 'val') ? stat.base + (secYear * stat.speed) : 
                           (stat.type === 'day') ? secDay * stat.speed : secYear * stat.speed;
-
                 let formatted = (val > 1000000000000) ? (val / 1000000000000).toFixed(2) + ' Tn' :
                                 (val > 1000000000) ? (val / 1000000000).toFixed(3) + ' Md' : 
                                 Math.floor(val).toLocaleString('fr-FR');
-                
                 let display = (stat.prefix || '') + formatted + (stat.suffix || '');
-                
                 if(document.getElementById(stat.id)) document.getElementById(stat.id).textContent = display;
                 const tickerEls = document.querySelectorAll('#tick-' + stat.id);
                 tickerEls.forEach(el => el.textContent = display);
@@ -329,8 +258,7 @@
                 this.classList.add('active');
                 const filter = this.dataset.filter;
                 document.querySelectorAll('.card').forEach(card => {
-                    if(card.classList.contains('ad-unit')) return; // Ne pas filtrer les pubs
-                    const match = filter === 'all' || card.dataset.category === filter;
+                    const match = filter === 'all' || card.dataset.category === filter || card.classList.contains('ad-unit');
                     if(match) {
                         card.style.display = 'flex';
                         setTimeout(() => card.style.opacity = '1', 10);
