@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataSphere | Intelligence Globale 2026</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5717809695352337" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --text-main: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --glass-border: rgba(255, 255, 255, 0.4);
+            
+            /* Couleurs par Catégorie */
+            --color-demo: #0071e3;    /* Bleu */
+            --color-climat: #248a3d;  /* Vert */
+            --color-eco: #85660e;     /* Or */
+            --color-tech: #8920ad;    /* Violet */
+            --color-res: #d35400;     /* Orange */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Ticker --- */
+        .ticker-wrapper {
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 40px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker-move 100s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 40px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        @keyframes ticker-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- Layout --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px 24px; }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 30px; 
+        }
+        
+        h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.04em; }
+        .live-indicator { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: #34c759; text-transform: uppercase; }
+        .dot { width: 8px; height: 8px; background: #34c759; border-radius: 50%; animation: pulse 2s infinite; }
+
+        /* --- Navigation --- */
+        .category-nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .category-nav::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background: #fff;
+            border: 1px solid var(--glass-border);
+            padding: 10px 22px;
+            border-radius: 99px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .cat-btn.active { background: var(--text-main); color: #fff; }
+
+        /* --- Bento Grid --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 190px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+
+        /* Styles Spécifiques aux Pubs en grille */
+        .card.ad-unit {
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.02);
+        }
+
+        /* Couleurs des titres */
+        .card[data-category="demographie"] .label { color: var(--color-demo); }
+        .card[data-category="climat"] .label { color: var(--color-climat); }
+        .card[data-category="economie"] .label { color: var(--color-eco); }
+        .card[data-category="tech"] .label { color: var(--color-tech); }
+        .card[data-category="ressources"] .label { color: var(--color-res); }
+
+        .col-3 { grid-column: span 3; }
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-8 { grid-column: span 8; }
+        .col-12 { grid-column: span 12; }
+
+        .label { 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .emoji { font-size: 16px; font-style: normal; }
+        .value { font-size: 34px; font-weight: 700; letter-spacing: -0.05em; color: var(--text-main); }
+        .desc { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+        .source-tag { font-size: 9px; color: #b6b6bb; text-transform: uppercase; margin-top: 20px; font-weight: 600; }
+
+        /* AdSense Wrappers */
+        .ad-banner-top { width: 100%; margin: 10px 0 25px 0; text-align: center; }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        @media (max-width: 900px) { .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; } }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-wrapper">
+        <div class="ticker" id="main-ticker"></div>
+    </div>
+
+    <div class="container">
+        <div class="ad-banner-top">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5717809695352337"
+                 data-ad-slot="VOTRE_ID_BLOC_AUTO"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <header>
+            <div>
+                <div class="live-indicator"><span class="dot"></span> Données Temps Réel 2026</div>
+                <h1>DataSphere</h1>
+            </div>
+            <div id="real-clock" style="font-variant-numeric: tabular-nums; color: var(--text-secondary); font-weight: 500;">00:00:00</div>
+        </header>
+
+        <div class="category-nav">
+            <button class="cat-btn active" data-filter="all">Vue Globale</button>
+            <button class="cat-btn" data-filter="demographie">Démographie</button>
+            <button class="cat-btn" data-filter="climat">Énergie & Climat</button>
+            <button class="cat-btn" data-filter="economie">Économie</button>
+            <button class="cat-btn" data-filter="tech">Technologie</button>
+            <button class="cat-btn" data-filter="ressources">Ressources</button>
+        </div>
+
+        <div class="bento-grid" id="grid">
+            </div>
+
+        <div class="ad-banner-top" style="margin-top: 40px;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5717809695352337"
+                 data-ad-slot="VOTRE_ID_BLOC_FOOTER"
+                 data-ad-format="autorelaxed"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <script>
+        const statsConfig = [
+            // Démographie
+            { id: 'pop', label: 'Population Mondiale', emoji: '🌎', category: 'demographie', base: 8310500000, speed: 2.48, type: 'val', size: 'col-8', desc: 'Individus sur Terre' },
+            { id: 'births', label: 'Naissances', emoji: '👶', category: 'demographie', base: 0, speed: 4.3, type: 'day', size: 'col-4', desc: 'Ce jour' },
+            
+            // Insertion Pub dans la Grille (Position 3)
+            { isAd: true, size: 'col-4' },
+
+            { id: 'deaths', label: 'Décès', emoji: '🕊️', category: 'demographie', base: 0, speed: 1.9, type: 'day', size: 'col-4', desc: 'Ce jour' },
+            { id: 'men', label: 'Hommes', emoji: '👨', category: 'demographie', base: 4188000000, speed: 1.25, type: 'val', size: 'col-4', desc: 'Totalité' },
+            
+            // Climat
+            { id: 'co2', label: 'CO₂ émis (t)', emoji: '💨', category: 'climat', base: 0, speed: 1280, type: 'year', size: 'col-6', desc: 'Cumulé 2026' },
+            { id: 'solar', label: 'Énergie Solaire', emoji: '☀️', category: 'climat', base: 0, speed: 18400, type: 'day', size: 'col-3', desc: 'MWh produits' },
+            { id: 'oil', label: 'Pétrole pompé', emoji: '🛢️', category: 'climat', base: 0, speed: 1150, type: 'day', size: 'col-3', desc: 'Barils extraits' },
+            
+            // Insertion Pub dans la Grille
+            { isAd: true, size: 'col-6' },
+
+            // Économie
+            { id: 'pib', label: 'PIB Mondial', emoji: '💰', category: 'economie', base: 115000000000000, speed: 145000, type: 'year', size: 'col-6', desc: 'Production ($)', prefix: '$' },
+            { id: 'growth', label: 'Croissance Éco', emoji: '📈', category: 'economie', base: 3.1, speed: 0, type: 'val', size: 'col-4', desc: 'Taux annuel', suffix: '%' },
+            { id: 'debt', label: 'Dette Mondiale', emoji: '💸', category: 'economie', base: 315000000000000, speed: 580000, type: 'year', size: 'col-6', desc: 'Totale ($)', prefix: '$' },
+
+            // Technologie
+            { id: 'web_users', label: 'Internautes', emoji: '🌐', category: 'tech', base: 5750000000, speed: 12, type: 'val', size: 'col-6', desc: 'Personnes connectées' },
+            { id: 'smartphones', label: 'Smartphones', emoji: '📱', category: 'tech', base: 0, speed: 46.2, type: 'year', size: 'col-6', desc: 'Produits en 2026' },
+            { id: 'ai', label: 'Adoption IA', emoji: '🤖', category: 'tech', base: 42.1, speed: 0.0000002, type: 'val', size: 'col-4', desc: '% entreprises', suffix: '%' },
+
+            // Ressources
+            { id: 'water_res', label: 'Eau Douce', emoji: '💧', category: 'ressources', base: 35000000, speed: -0.15, type: 'val', size: 'col-4', desc: 'Réserve km³' },
+            { id: 'wood', label: 'Production Bois', emoji: '🌲', category: 'ressources', base: 0, speed: 125, type: 'day', size: 'col-8', desc: 'Mètres cubes' }
+        ];
+
+        const grid = document.getElementById('grid');
+        const ticker = document.getElementById('main-ticker');
+        const startOfYear = new Date(2026, 0, 1);
+
+        function init() {
+            statsConfig.forEach(stat => {
+                if(stat.isAd) {
+                    // Création de l'emplacement publicitaire
+                    const adCard = document.createElement('div');
+                    adCard.className = `card ad-unit ${stat.size}`;
+                    adCard.innerHTML = `
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-5717809695352337"
+                             data-ad-slot="VOTRE_ID_BLOC_GRILLE"
+                             data-ad-format="fluid"
+                             data-ad-layout-key="-fb+5w+4e-db+86"></ins>
+                    `;
+                    grid.appendChild(adCard);
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                } else {
+                    // Création de la carte de données standard
+                    const card = document.createElement('div');
+                    card.className = `card ${stat.size}`;
+                    card.setAttribute('data-category', stat.category);
+                    card.innerHTML = `
+                        <div>
+                            <div class="label">
+                                <i class="emoji">${stat.emoji}</i>
+                                ${stat.label}
+                            </div>
+                            <div class="value" id="${stat.id}">--</div>
+                            <p class="desc">${stat.desc}</p>
+                        </div>
+                        <span class="source-tag">Flux Live DataSphere</span>
+                    `;
+                    grid.appendChild(card);
+
+                    const tickItem = document.createElement('div');
+                    tickItem.className = 'ticker-item';
+                    tickItem.innerHTML = `${stat.emoji} ${stat.label} : <span id="tick-${stat.id}" style="color:var(--text-main)">--</span>`;
+                    ticker.appendChild(tickItem);
+                }
+            });
+            ticker.innerHTML += ticker.innerHTML; 
+        }
+
+        function update() {
+            const now = Date.now();
+            const startOfDay = new Date().setHours(0,0,0,0);
+            const secYear = (now - startOfYear) / 1000;
+            const secDay = (now - startOfDay) / 1000;
+
+            statsConfig.forEach(stat => {
+                if(stat.isAd) return;
+                
+                let val = (stat.type === 'val') ? stat.base + (secYear * stat.speed) : 
+                          (stat.type === 'day') ? secDay * stat.speed : secYear * stat.speed;
+
+                let formatted = (val > 1000000000000) ? (val / 1000000000000).toFixed(2) + ' Tn' :
+                                (val > 1000000000) ? (val / 1000000000).toFixed(3) + ' Md' : 
+                                Math.floor(val).toLocaleString('fr-FR');
+                
+                let display = (stat.prefix || '') + formatted + (stat.suffix || '');
+                
+                if(document.getElementById(stat.id)) document.getElementById(stat.id).textContent = display;
+                const tickerEls = document.querySelectorAll('#tick-' + stat.id);
+                tickerEls.forEach(el => el.textContent = display);
+            });
+            document.getElementById('real-clock').textContent = new Date().toLocaleTimeString('fr-FR');
+        }
+
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.cat-btn.active').classList.remove('active');
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.card').forEach(card => {
+                    if(card.classList.contains('ad-unit')) return; // Ne pas filtrer les pubs
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    if(match) {
+                        card.style.display = 'flex';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 400);
+                    }
+                });
+            });
+        });
+
+        init();
+        setInterval(update, 500);
+        update();
+    </script>
+</body>
+</html>
